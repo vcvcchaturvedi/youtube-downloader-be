@@ -147,9 +147,9 @@ app.get("/downloadWithURL/:url", async (req, res) => {
             res.status(500).send({
               message: "Could not download the file. " + err,
             });
-            flag = false;
-            sessions[i].downloaded = true;
           }
+          flag = false;
+          sessions[i].downloaded = true;
         });
       }
     }
