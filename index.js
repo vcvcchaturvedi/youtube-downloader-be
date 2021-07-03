@@ -136,7 +136,7 @@ app.get("/downloadWithURL/:url", async (req, res) => {
   let flag = true;
   console.log("Requested " + url);
   const __dirname = path.dirname(url);
-  const filePath = path.join(__dirname) + "/" + url;
+  const filePath = url; //path.join(__dirname) + "/" + url;
   console.log("File path=" + filePath);
   for (let i = 0; i < sessions.length; i++) {
     if (sessions[i].finalURL == url) {
