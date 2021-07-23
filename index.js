@@ -140,6 +140,7 @@ app.get("/downloadWithURL/:url", async (req, res) => {
   console.log("File path=" + filePath);
   for (let i = 0; i < sessions.length; i++) {
     if (sessions[i].finalURL == url) {
+      console.log(JSON.stringify(sessions[i]));
       if (
         sessions[i].isReady &&
         !sessions[i].downloaded &&
