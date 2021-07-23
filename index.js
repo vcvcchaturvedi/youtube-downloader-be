@@ -72,8 +72,8 @@ let downloadFile = async function (
   return strFile;
 };
 app.post("/getInfo", async (req, res) => {
-  if (sessions.length > 20)
-    res.send({ message: "Too many users on site, please try back later..." });
+  // if (sessions.length > 20)
+  //   res.send({ message: "Too many users on site, please try back later..." });
   let sessionYTDL;
   if (!req.sessionYTDL) {
     let randomKey = Math.round(Math.random() * 999999999) + 999999999;
@@ -343,7 +343,7 @@ app.listen(port, () => console.log("Started at port " + port));
 //   }
 // }, 40000);
 let deleteFile = function () {
-  if (sessions.length > 25) sessions.splice(sessions.length - 1, 1);
+  //if (sessions.length > 25) sessions.splice(0, 1);
   console.log(sessions.length);
   const __dirname = path.dirname("./");
   fs.readdir(__dirname, (err, files) => {
