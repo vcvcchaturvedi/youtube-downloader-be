@@ -140,13 +140,19 @@ app.get("/downloadWithURL/:url", async (req, res) => {
   console.log("File path=" + filePath);
   for (let i = 0; i < sessions.length; i++) {
     if (sessions[i].finalURL == url) {
-      if (sessions[i].isReady && !sessions[i].downloaded) {
+      if (
+        sessions[i].isReady &&
+        !sessions[i].downloaded &&
+        !sessions[i].isDownloading
+      ) {
+        sessions[i].isDownloading = true;
         flag = false;
         res.download(filePath, url, (err) => {
           if (err) {
             res.status(500).send({
               message: "Could not download the file. " + err,
             });
+            sessions[i].isDownloading = false;
           }
           flag = false;
           sessions[i].downloaded = true;
