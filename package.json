@@ -18,6 +18,6 @@
     "express-session": "^1.17.2",
     "ffmpeg": "^0.0.4",
     "nodemon": "^2.0.7",
-    "ytdl-core": "^4.11.0"
+    "ytdl-core": "^4.11.2"
   }
 }
