@@ -240,7 +240,7 @@ app.post("/downloadWithInfo", async (req, res) => {
                     videoFile +
                     " -i " +
                     audioFile +
-                    "  -c copy " +
+                    "  -c copy -strict -2 " +
                     strFinal;
                   var handle;
                   let delayedCommand = function () {
