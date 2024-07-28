@@ -222,6 +222,7 @@ app.post("/downloadWithInfo", async (req, res) => {
             formatVideo.container
           )
             .then((dataVideodl) => {
+              session.videoReady = true;
               videoFile = dataVideodl;
               downloadFile(
                 session.url,
@@ -233,6 +234,7 @@ app.post("/downloadWithInfo", async (req, res) => {
               )
                 .then((dataAudiodl) => {
                   audioFile = dataAudiodl;
+                  session.audioReady = true;
                   let command =
                     "ffmpeg -i " +
                     videoFile +
