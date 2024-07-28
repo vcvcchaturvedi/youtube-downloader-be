@@ -1,6 +1,6 @@
 import { exec } from "child_process";
 import fs from "fs";
-import ytdl from "ytdl-core";
+import ytdl from "@distube/ytdl-core";
 import Express from "express";
 import cors from "cors";
 import session from "express-session";
@@ -240,7 +240,7 @@ app.post("/downloadWithInfo", async (req, res) => {
                     videoFile +
                     " -i " +
                     audioFile +
-                    "  -c:v copy -c:a aac " +
+                    "  -c copy " +
                     strFinal;
                   var handle;
                   let delayedCommand = function () {
@@ -307,7 +307,7 @@ app.post("/downloadWithInfo", async (req, res) => {
                       });
                     }
                   };
-                  handle = setInterval(delayedCommand, 20000);
+                  handle = setInterval(delayedCommand, 3000);
                 })
                 .catch((err) =>
                   console.log("Error in downloading audio " + err)
