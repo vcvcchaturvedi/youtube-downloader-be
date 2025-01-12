@@ -10,38 +10,40 @@ import ffmpeg from "ffmpeg";
 import { spawn } from "child_process";
 import dotenv from "dotenv";
 dotenv.config();
-const cookies = {
-  VISITOR_INFO1_LIVE: "05fCaGuGY98",
-  VISITOR_PRIVACY_METADATA: "CgJJThIEGgAgLw%3D%3D",
-  GPS: "1",
-  "__Secure-ROLLOUT_TOKEN": "CKOg3K379deGvwEQ7pzE9N_vigMY7pzE9N_vigM%3D",
-  YSC: "m1pm1qy8eXc",
-  LOGIN_INFO:
-    "AFmmF2swRQIhAI-i2mqdEuqULG8nBqj5qlKjK1aUnWOlqS1hQ5SPx47TAiAfl3ATdS1iSEOOy2aIng-Leo5_Go-g-Vr96Rr3BiG9Mg:QUQ3MjNmeDBpbTdVQzlnSzVYbXpjdE5PUW9ZMVhsOTE2UFhxeXJoSTlpbnpYVzF0a0hJWDBSMG05aDJ0X2lwb3RxbTVtWkNnY0V5cnlhTkViR0JSYnhCbm9TYkVITzdWbWtDWXA2SFl0NG04eDlRMUhKWUI3cXNzRFpMOENOSDU1Tk5VQVAxb1RMV0NaeDhiQnRhYVhFSW5aVEMwRnRHM3lR",
-  "__Secure-1PSIDTS":
-    "sidts-CjEBmiPuTZmJWlMbyeDsk8tDKwnxqcRzjQrtE2tQAhGxZQrdQF0ZbkL0znsMyVXnTdwDEAA",
-  "__Secure-3PSIDTS":
-    "sidts-CjEBmiPuTZmJWlMbyeDsk8tDKwnxqcRzjQrtE2tQAhGxZQrdQF0ZbkL0znsMyVXnTdwDEAA",
-  HSID: "A1OXVLZ-9oyvkOce0",
-  SSID: "AZmKTWGFJ8pD6ADEU",
-  APISID: "HQEo-x0LxIqIozYQ/A9HGHykD4WBmPze4z",
-  SAPISID: "XkIvCKqpEfSEc0QS/AINkop3FNyCYET-RK",
-  "__Secure-1PAPISID": "XkIvCKqpEfSEc0QS/AINkop3FNyCYET-RK",
-  "__Secure-3PAPISID": "XkIvCKqpEfSEc0QS/AINkop3FNyCYET-RK",
-  SID: "g.a000sQhIiPoQPRl2q-GTIsgsyBKt5UIAZCeRWWXeUd_V6JFkRF8i8fxiFizCLotOk6jJHYD7cQACgYKAVwSARISFQHGX2Mi-2W7vIYOvdud5abArlYrbBoVAUF8yKo6hIxxQYShFMBV3efGyDN-0076",
-  "__Secure-1PSID":
-    "g.a000sQhIiPoQPRl2q-GTIsgsyBKt5UIAZCeRWWXeUd_V6JFkRF8i1Anurv40pzZdE4DT4nsaqAACgYKASISARISFQHGX2Mi7w5RWr_Nh7tGYQ5Fjmsa-RoVAUF8yKoyXIvPz6Rzcfy63s3i5-W90076",
-  "__Secure-3PSID":
-    "g.a000sQhIiPoQPRl2q-GTIsgsyBKt5UIAZCeRWWXeUd_V6JFkRF8idfJQn0osdFK0Was9znzXJQACgYKAfsSARISFQHGX2Miw-lHkRF3VUWFL2t8yuPMuBoVAUF8yKoM0GvxJ4yf_E406o1WpZZL0076",
-  PREF: "tz",
-  SIDCC:
-    "AKEyXzUqDglcjKkphfYXKB87a7cz4TStV0qMqeq5WC9PLn9jqArzYn3GfRxmVNHw3BONcJRA",
-  "__Secure-1PSIDCC":
-    "AKEyXzXaPcDZu4_NJuLuq5X3Zj5qR9AFWtLMCFxAzayjUdU3gA6obzE3-pO8bIfiTsIMP2K7",
-  "__Secure-3PSIDCC":
-    "AKEyXzXoVcitqj-z64NiLX5-U-Abtx9OYryhDjeUAvfWuU8vqrCo1Xz7GC4f5gOM7ZBzBTQEEA",
-  "ST-1b": "session_logininfo",
-};
+const cookies = [
+  {
+    VISITOR_INFO1_LIVE: "05fCaGuGY98",
+    VISITOR_PRIVACY_METADATA: "CgJJThIEGgAgLw%3D%3D",
+    GPS: "1",
+    "__Secure-ROLLOUT_TOKEN": "CKOg3K379deGvwEQ7pzE9N_vigMY7pzE9N_vigM%3D",
+    YSC: "m1pm1qy8eXc",
+    LOGIN_INFO:
+      "AFmmF2swRQIhAI-i2mqdEuqULG8nBqj5qlKjK1aUnWOlqS1hQ5SPx47TAiAfl3ATdS1iSEOOy2aIng-Leo5_Go-g-Vr96Rr3BiG9Mg:QUQ3MjNmeDBpbTdVQzlnSzVYbXpjdE5PUW9ZMVhsOTE2UFhxeXJoSTlpbnpYVzF0a0hJWDBSMG05aDJ0X2lwb3RxbTVtWkNnY0V5cnlhTkViR0JSYnhCbm9TYkVITzdWbWtDWXA2SFl0NG04eDlRMUhKWUI3cXNzRFpMOENOSDU1Tk5VQVAxb1RMV0NaeDhiQnRhYVhFSW5aVEMwRnRHM3lR",
+    "__Secure-1PSIDTS":
+      "sidts-CjEBmiPuTZmJWlMbyeDsk8tDKwnxqcRzjQrtE2tQAhGxZQrdQF0ZbkL0znsMyVXnTdwDEAA",
+    "__Secure-3PSIDTS":
+      "sidts-CjEBmiPuTZmJWlMbyeDsk8tDKwnxqcRzjQrtE2tQAhGxZQrdQF0ZbkL0znsMyVXnTdwDEAA",
+    HSID: "A1OXVLZ-9oyvkOce0",
+    SSID: "AZmKTWGFJ8pD6ADEU",
+    APISID: "HQEo-x0LxIqIozYQ/A9HGHykD4WBmPze4z",
+    SAPISID: "XkIvCKqpEfSEc0QS/AINkop3FNyCYET-RK",
+    "__Secure-1PAPISID": "XkIvCKqpEfSEc0QS/AINkop3FNyCYET-RK",
+    "__Secure-3PAPISID": "XkIvCKqpEfSEc0QS/AINkop3FNyCYET-RK",
+    SID: "g.a000sQhIiPoQPRl2q-GTIsgsyBKt5UIAZCeRWWXeUd_V6JFkRF8i8fxiFizCLotOk6jJHYD7cQACgYKAVwSARISFQHGX2Mi-2W7vIYOvdud5abArlYrbBoVAUF8yKo6hIxxQYShFMBV3efGyDN-0076",
+    "__Secure-1PSID":
+      "g.a000sQhIiPoQPRl2q-GTIsgsyBKt5UIAZCeRWWXeUd_V6JFkRF8i1Anurv40pzZdE4DT4nsaqAACgYKASISARISFQHGX2Mi7w5RWr_Nh7tGYQ5Fjmsa-RoVAUF8yKoyXIvPz6Rzcfy63s3i5-W90076",
+    "__Secure-3PSID":
+      "g.a000sQhIiPoQPRl2q-GTIsgsyBKt5UIAZCeRWWXeUd_V6JFkRF8idfJQn0osdFK0Was9znzXJQACgYKAfsSARISFQHGX2Miw-lHkRF3VUWFL2t8yuPMuBoVAUF8yKoM0GvxJ4yf_E406o1WpZZL0076",
+    PREF: "tz",
+    SIDCC:
+      "AKEyXzUqDglcjKkphfYXKB87a7cz4TStV0qMqeq5WC9PLn9jqArzYn3GfRxmVNHw3BONcJRA",
+    "__Secure-1PSIDCC":
+      "AKEyXzXaPcDZu4_NJuLuq5X3Zj5qR9AFWtLMCFxAzayjUdU3gA6obzE3-pO8bIfiTsIMP2K7",
+    "__Secure-3PSIDCC":
+      "AKEyXzXoVcitqj-z64NiLX5-U-Abtx9OYryhDjeUAvfWuU8vqrCo1Xz7GC4f5gOM7ZBzBTQEEA",
+    "ST-1b": "session_logininfo",
+  },
+];
 const agent = ytdl.createAgent(cookies);
 const app = Express();
 const port = process.env.PORT || 3200;
