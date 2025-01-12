@@ -290,7 +290,7 @@ app.post("/getInfo", async (req, res) => {
     console.log(req.sessionYTDL);
     let id = ytdl.getURLVideoID(req.sessionYTDL.url, { agent });
     console.log("id=", id);
-    let info = ytdl.getInfo(req.sessionYTDL.url, { agent }); //(id);
+    let info = await ytdl.getInfo(req.sessionYTDL.url, { agent }); //(id);
     console.log("info=", info);
     sessionYTDL.id = id;
     sessionYTDL.creationTime = Date.now();
