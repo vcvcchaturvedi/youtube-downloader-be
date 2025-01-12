@@ -129,7 +129,7 @@ app.post("/getInfo", async (req, res) => {
     sendingInfo.key = req.sessionYTDL.key;
     res.send(sendingInfo);
   } catch (err) {
-    res.send({ message: err });
+    res.send({ message: JSON.stringify(err) });
   }
 });
 app.get("/downloadWithURL/:url", async (req, res) => {
