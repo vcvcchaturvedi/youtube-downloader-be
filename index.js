@@ -8,7 +8,8 @@ import cookieParser from "cookie-parser";
 import path from "path";
 import ffmpeg from "ffmpeg";
 import { spawn } from "child_process";
-
+import dotenv from "dotenv";
+dotenv.config();
 const app = Express();
 const port = process.env.PORT || 3200;
 const corsOptions = {
