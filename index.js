@@ -97,7 +97,9 @@ app.post("/getInfo", async (req, res) => {
   try {
     console.log(req.sessionYTDL);
     let id = ytdl.getURLVideoID(req.sessionYTDL.url);
+    console.log("id=", id);
     let info = await ytdl.getInfo(id);
+    console.log("info=", info);
     sessionYTDL.id = id;
     sessionYTDL.creationTime = Date.now();
     sessionYTDL.info = info;
