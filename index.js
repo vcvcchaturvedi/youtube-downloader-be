@@ -46,6 +46,7 @@ const cookies = [];
 for (let x in cookiesData) {
   cookies.push({ name: x, value: cookiesData[x] });
 }
+console.log("cookies:", cookies);
 const agent = ytdl.createAgent(cookies);
 const app = Express();
 const port = process.env.PORT || 3200;
@@ -98,7 +99,7 @@ let downloadFile = async function (
   else if (flag === false)
     strFile += "audio" + position.toString() + "." + extension;
   else strFile += "final" + position.toString() + "." + extension;
-  let res = await ytdl(url, { format: format1 })
+  let res = await ytdl(url, { format: format1, agent })
     .pipe(fs.createWriteStream(strFile))
     .on("close", () => {
       console.log("Done" + position + " " + strFile);
