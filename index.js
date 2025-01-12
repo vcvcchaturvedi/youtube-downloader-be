@@ -1,6 +1,6 @@
 import { exec } from "child_process";
 import fs from "fs";
-import { ytdl } from "@distube/ytdl-core";
+import ytdl from "@distube/ytdl-core";
 import Express from "express";
 import cors from "cors";
 import session from "express-session";
